@@ -27,7 +27,18 @@
       "mac": "Command+Shift+U",
       "chromeos": "Ctrl+Shift+U",
       "linux": "Ctrl+Shift+U"
-    },"description":"does thing"
+    },"description":"downloads"
+  },
+  "save-feature":{
+    "suggested_key": {
+      "default": "Ctrl+Shift+Z",
+      "windows": "Ctrl+Shift+Z",
+      "mac": "Command+Shift+Z",
+      "chromeos": "Ctrl+Shift+Z",
+      "linux": "Ctrl+Shift+Z"
+    },"description":"adds to list of data"
+
+
   }
 }
 

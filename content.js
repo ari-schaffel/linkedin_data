@@ -103,8 +103,8 @@ chrome.runtime.onMessage.addListener(
 
 
   function(request, sender, sendResponse) {
-    if (request.message1 === "hello"){hope1 = downloadCSV(emptyData)};
-    if( request.message === "clicked_browser_action" ) {
+    if (request.message === "download_data"){hope1 = downloadCSV(emptyData)};
+    if( request.message === "save_data" ) {
 
       data1 = printNames(class_names_for_linkedin)
       emptyData.push(data1);
@@ -114,7 +114,7 @@ chrome.runtime.onMessage.addListener(
       // hope = convertArrayOfObjectsToCSV();
       // ;
       // This line is new!
-      chrome.runtime.sendMessage({"message": "display_data", "data": data});
+      // chrome.runtime.sendMessage({"message": "display_data", "data": data});
     }
   }
 );
