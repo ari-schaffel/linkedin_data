@@ -12,7 +12,12 @@ chrome.browserAction.onClicked.addListener(function(tab) {
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     if( request.message === "display_data" ) {
-      console.log(request.data);
+      data = request.data;
+      test = Object.keys(data).map(function(k){
+      return data[k];
+          }).join(',');
+      // console.log(test);
+      console.log("hello world");
     }
   }
 );
