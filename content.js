@@ -81,7 +81,7 @@ function convertArrayOfObjectsToCSV(args) {
 function downloadCSV(args) {
                 var data, filename, link;
                 var csv = convertArrayOfObjectsToCSV({
-                    data: [data1]
+                    data: emptyData
                 });
 
                 if (csv == null) return;
@@ -103,6 +103,7 @@ chrome.runtime.onMessage.addListener(
 
 
   function(request, sender, sendResponse) {
+    if (request.message1 === "hello"){hope1 = downloadCSV(emptyData)};
     if( request.message === "clicked_browser_action" ) {
 
       data1 = printNames(class_names_for_linkedin)
@@ -111,7 +112,7 @@ chrome.runtime.onMessage.addListener(
 
 
       // hope = convertArrayOfObjectsToCSV();
-      // hope1 = downloadCSV(data1);
+      // ;
       // This line is new!
       chrome.runtime.sendMessage({"message": "display_data", "data": data});
     }
