@@ -8,16 +8,3 @@ chrome.browserAction.onClicked.addListener(function(tab) {
     chrome.tabs.sendMessage(activeTab.id, {"message": "clicked_browser_action"});
   });
 });
-// This block is new!
-chrome.runtime.onMessage.addListener(
-  function(request, sender, sendResponse) {
-    if( request.message === "display_data" ) {
-      data = request.data;
-      test = Object.keys(data).map(function(k){
-      return data[k];
-          }).join(',');
-      // console.log(test);
-      console.log("hello world");
-    }
-  }
-);

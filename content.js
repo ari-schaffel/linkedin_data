@@ -9,7 +9,10 @@ var class_names_for_linkedin ={'name':'inline t-24 t-black t-normal break-words'
 function printNames(dict){
   data = {}
   //gets more for aboutDescription
+  try{
   document.getElementsByClassName("lt-line-clamp__more")[0].click()
+  }
+  catch(err){}
   // iterates over dict to get the data from the page
   var keys = Object.keys(dict);
   for (var i = 0;i<keys.length;i++){
@@ -42,6 +45,7 @@ var stockData = [
             Price: 554.52
         },
     ];
+var emptyData = [];
 
 function convertArrayOfObjectsToCSV(args) {
             var result, ctr, keys, columnDelimiter, lineDelimiter, data;
@@ -102,13 +106,12 @@ chrome.runtime.onMessage.addListener(
     if( request.message === "clicked_browser_action" ) {
 
       data1 = printNames(class_names_for_linkedin)
-      test = Object.keys(data).map(function(k){
-      return data[k];
-          }).join(',');
-      console.log(data);
-      console.log('hello world');
+      emptyData.push(data1);
+      console.log(emptyData);
+
+
       // hope = convertArrayOfObjectsToCSV();
-      hope1 = downloadCSV(data1);
+      // hope1 = downloadCSV(data1);
       // This line is new!
       chrome.runtime.sendMessage({"message": "display_data", "data": data});
     }
