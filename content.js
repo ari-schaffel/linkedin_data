@@ -28,24 +28,7 @@ function printNames(dict){
 
 
 
-var stockData = [
-        {
-            Symbol: "AAPL",
-            Company: "Apple Inc.",
-            Price: 132.54
-        },
-        {
-            Symbol: "INTC",
-            Company: "Intel Corporation",
-            Price: 33.45
-        },
-        {
-            Symbol: "GOOG",
-            Company: "Google Inc",
-            Price: 554.52
-        },
-    ];
-var emptyData = [];
+
 
 function convertArrayOfObjectsToCSV(args) {
             var result, ctr, keys, columnDelimiter, lineDelimiter, data;
@@ -81,7 +64,7 @@ function convertArrayOfObjectsToCSV(args) {
 function downloadCSV(args) {
                 var data, filename, link;
                 var csv = convertArrayOfObjectsToCSV({
-                    data: emptyData
+                    data: data_to_csv
                 });
 
                 if (csv == null) return;
@@ -92,7 +75,7 @@ function downloadCSV(args) {
                     csv = 'data:text/csv;charset=utf-8,' + csv;
                 }
                 data = encodeURI(csv);
-                console.log("here");
+                console.log("here1");
                 link = document.createElement('a');
                 link.setAttribute('href', data);
                 link.setAttribute('download', filename);
@@ -103,18 +86,29 @@ chrome.runtime.onMessage.addListener(
 
 
   function(request, sender, sendResponse) {
-    if (request.message === "download_data"){hope1 = downloadCSV(emptyData)};
-    if( request.message === "save_data" ) {
-
+    if (request.message === "download_data"){
+      console.log("here")
+      data_to_csv = JSON.parse(localStorage.getItem("data_to_save"));
+      console.log(data_to_csv);
+      hope1 = downloadCSV(data_to_csv);
+      localStorage.removeItem('data_to_save');
+      var emptyData = [];
+                                            };
+    if( request.message === "save_data" )   {
+      var emptyData = [];
       data1 = printNames(class_names_for_linkedin)
       emptyData.push(data1);
-      console.log(emptyData);
+      // console.log(emptyData);
+      console.log(data1)
+      try{
+      oldData = JSON.parse(localStorage.getItem('data_to_save'));
+      oldData.push(data1);
+      localStorage.setItem('data_to_save',JSON.stringify(oldData));
+         }
+      catch(err){console.log("starting here");localStorage.setItem('data_to_save',JSON.stringify(emptyData))}
 
 
-      // hope = convertArrayOfObjectsToCSV();
-      // ;
-      // This line is new!
-      // chrome.runtime.sendMessage({"message": "display_data", "data": data});
-    }
+      console.log('Data Saved');
+                                            }
   }
 );
