@@ -97,6 +97,7 @@ chrome.runtime.onMessage.addListener(
     if( request.message === "save_data" )   {
       var emptyData = [];
       data1 = printNames(class_names_for_linkedin)
+      data1['url'] =window.location.href;
       emptyData.push(data1);
       // console.log(emptyData);
       console.log(data1)
