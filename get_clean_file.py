@@ -20,7 +20,7 @@ def get_latest_file():
 
 latest_file=get_latest_file()
 
-df = pd.read_csv(latest_file,sep='|')
+df = pd.read_csv(latest_file,sep=';')
 
-df.columns =["Name",'Job Description','Location',"About","Company Name"]
+df.columns =["Name",'Job Description','Location',"About","Company Name","URL"]
 df.to_excel((r'C:\Users\Yasch\Desktop\Peter %s.xlsx'%today),index = False)
