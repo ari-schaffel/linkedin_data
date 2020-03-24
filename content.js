@@ -1,13 +1,14 @@
 // content.js
 
-var class_names_for_linkedin ={'name':'inline t-24 t-black t-normal break-words',
-                                'professionalDescription':'mt1 t-18 t-black t-normal',
-                                'location':'t-16 t-black t-normal inline-block',
-                                'aboutDescription':'lt-line-clamp__raw-line',
-                                'companyName':'text-align-left ml2 t-14 t-black t-bold full-width lt-line-clamp lt-line-clamp--multi-line ember-view'
+var class_names_for_linkedin ={"name":'inline t-24 t-black t-normal break-words',
+                                "professional_description":'mt1 t-18 t-black t-normal',
+                                "location":'t-16 t-black t-normal inline-block',
+                                "about_description":'lt-line-clamp__raw-line',
+                                "company_name":'text-align-left ml2 t-14 t-black t-bold full-width lt-line-clamp lt-line-clamp--multi-line ember-view'
                               };
 
 const url = 'https://linkedin-data-scrape.firebaseio.com/.json';
+const url1 = 'http://127.0.0.1:8000/backend/';
 
 function getDataFromeLinkedin(dict){
   data = {}
@@ -30,8 +31,8 @@ function getDataFromeLinkedin(dict){
 
 
 
-async function getData(url){
-  data = await fetch(url)
+async function getData(url1){
+  data = await fetch(url1)
   json = await data.json();
   return json
 }
@@ -39,7 +40,7 @@ async function getData(url){
 
 async function checkNameinDB(){
   names = []
-  data = await getData(url)
+  data = await getData(url1)
   for (const property in data){
       names.push(`${data[property]['name']}`)
   }
@@ -63,8 +64,9 @@ chrome.runtime.onMessage.addListener(
 
       else{
         console.log(data)
-        $.post('https://linkedin-data-scrape.firebaseio.com/.json',   JSON.stringify(linkedinData),   function () {     alert("success");   } )
-        console.log('Data Saved');
+        //$.post('https://linkedin-data-scrape.firebaseio.com/.json',   JSON.stringify(linkedinData),   function () {     alert("success");   } )
+        $.post('http://127.0.0.1:8000/backend/',   linkedinData,   function () {     alert("success");   } )
+        // console.log(JSON.stringify(linkedinData));
       }
 
       

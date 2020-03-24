@@ -1,0 +1,25 @@
+{
+  "name": "my_extension",
+  "version": "1.0.0",
+  "description": "",
+  "main": "background.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "node-fetch": "^2.6.0",
+    "sqlite3": "^4.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ari-schaffel/linkedin_data.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ari-schaffel/linkedin_data/issues"
+  },
+  "homepage": "https://github.com/ari-schaffel/linkedin_data#readme"
+}
