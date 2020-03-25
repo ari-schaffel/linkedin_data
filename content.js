@@ -31,23 +31,23 @@ function getDataFromeLinkedin(dict){
 
 
 
-async function getData(url1){
-  data = await fetch(url1);
-  // json = await data.json();
-  return data
-}
+// async function getData(url1){
+//   data = await fetch(url1);
+//   // json = await data.json();
+//   return data
+// }
 
 
-async function checkNameinDB(){
-  urls = []
-  data = await getData(url1)
-  for (const property in data){
-    console.log(data[property]['url'])
-      // urls.push(`${data[property]['urls']}`)
-  }
-  console.log(urls)
-  return urls
-}
+// async function checkNameinDB(){
+//   urls = []
+//   data = await getData(url1)
+//   for (const property in data){
+//     console.log(data[property]['url'])
+//       // urls.push(`${data[property]['urls']}`)
+//   }
+//   console.log(urls)
+//   return urls
+// }
 
 
 
@@ -56,18 +56,20 @@ chrome.runtime.onMessage.addListener(
 
   async function(request, sender, sendResponse) {
     console.log('here')
-    names = await checkNameinDB()
+    // names = await checkNameinDB()
     if( request.message === "save_data" )   {
       linkedinData = getDataFromeLinkedin(class_names_for_linkedin)
       linkedinData['url'] =window.location.href;
-      if (names.includes(linkedinData['name'])){alert('Already Saved')}
+      // if (names.includes(linkedinData['name'])){alert('Already Saved')}
 
-      else{
+      // else{
         console.log(data)
         //$.post('https://linkedin-data-scrape.firebaseio.com/.json',   JSON.stringify(linkedinData),   function () {     alert("success");   } )
-        $.post('http://127.0.0.1:8000/backend/',   linkedinData,   function () {     alert("success");   } )
+        $.post('http://127.0.0.1:8000/backend/',   linkedinData,
+           function(response) {alert(response.message);} )
+        // $.post('http://127.0.0.1:8000/backend/',   linkedinData,)
         // console.log(JSON.stringify(linkedinData));
-      }
+      // }
 
       
 }
