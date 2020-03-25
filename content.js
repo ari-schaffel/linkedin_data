@@ -32,20 +32,21 @@ function getDataFromeLinkedin(dict){
 
 
 async function getData(url1){
-  data = await fetch(url1)
-  json = await data.json();
-  return json
+  data = await fetch(url1);
+  // json = await data.json();
+  return data
 }
 
 
 async function checkNameinDB(){
-  names = []
+  urls = []
   data = await getData(url1)
   for (const property in data){
-      names.push(`${data[property]['name']}`)
+    console.log(data[property]['url'])
+      // urls.push(`${data[property]['urls']}`)
   }
-  // console.log(names)
-  return names
+  console.log(urls)
+  return urls
 }
 
 
@@ -56,7 +57,6 @@ chrome.runtime.onMessage.addListener(
   async function(request, sender, sendResponse) {
     console.log('here')
     names = await checkNameinDB()
-    console.log(names)
     if( request.message === "save_data" )   {
       linkedinData = getDataFromeLinkedin(class_names_for_linkedin)
       linkedinData['url'] =window.location.href;
